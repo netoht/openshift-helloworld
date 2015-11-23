@@ -8,7 +8,7 @@ docker run -d --name "origin" \
         --privileged --pid=host --net=host \
         -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys -v /var/lib/docker:/var/lib/docker:rw \
         -v /var/lib/origin/openshift.local.volumes:/var/lib/origin/openshift.local.volumes \
-        openshift/origin start
+        openshift/origin start --public-master=192.168.99.100
 
 ```
 
@@ -23,4 +23,7 @@ This command:
 
 ```
 https://192.168.99.100:8443/
+
+Login: test
+Pass:  test
 ```
