@@ -49,8 +49,31 @@ sudo ./openshift start --public-master=http://openshift.com.br
 ## Acessando o Openshift Origin
 
 ```
-https://192.168.99.100:8443/
+# Acessando o painel
+http://openshift.com.br
 
 Login: test
 Pass:  test
+
+Login: system
+Pass: admin
+```
+
+## Acessando o Openshift Origin via `cli`
+
+```sh
+# logando
+oc login https://localhost:8443
+
+# criando um projeto
+oc new-project helloworld
+
+# Alterando o uso para o projeto criado
+oc project helloworld
+
+# Criando uma aplicação
+oc new-app kubernetes/guestbook
+
+# 
+
 ```
