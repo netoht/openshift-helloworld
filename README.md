@@ -3,6 +3,10 @@
 
 ## Executando o Openshift Origin em Docker
 
+Pré requisito: ter o docker instalado
+
+PS: Só funciona em CentOS, Fedora ou RedHat Linux
+
 ```sh
 docker run -d --name "origin" \
         --privileged --pid=host --net=host \
@@ -18,6 +22,29 @@ This command:
 - starts the web console listening on all interfaces at /console (0.0.0.0:8443),
 - launches an etcd server to store persistent data, and
 - launches the Kubernetes system components.
+
+## Na sua VM
+
+```sh
+# adicionar no hosts
+127.0.0.1 http://openshift.com.br
+
+# baixe o openshift origin
+https://github.com/openshift/origin/releases
+
+# execute o comando abaixo para iniciar
+export PATH=$(pwd):$PATH
+sudo ./openshift start --public-master=http://openshift.com.br
+# pare a execução
+
+# setando variáveis do kubernetes
+export KUBECONFIG=`pwd`/openshift.local.config/master/admin.kubeconfig
+export CURL_CA_BUNDLE=`pwd`/openshift.local.config/master/ca.crt
+sudo chmod +r `pwd`/openshift.local.config/master/admin.kubeconfig
+
+# execute novamente o openshift
+sudo ./openshift start --public-master=http://openshift.com.br
+```
 
 ## Acessando o Openshift Origin
 
